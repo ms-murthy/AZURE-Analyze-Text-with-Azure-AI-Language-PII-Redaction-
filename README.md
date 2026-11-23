@@ -153,12 +153,12 @@ Redacted Text:
 
 *Illustrative, abbreviated output. The exact entities, categories and PII found depend on the current service model. Replace this with your own run.*
 
-<!--
+
 Add your own screenshots to the images/ folder and uncomment these lines:
 ![Language detection output](images/output-language.png)
 ![Entity extraction output](images/output-entities.png)
 ![PII redaction output](images/output-pii.png)
--->
+
 
 ## 💡 Key Learnings
 
