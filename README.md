@@ -45,12 +45,12 @@ A digital travel agency receives hotel reviews from customers around the world. 
 ## 📁 Project Structure
 
 ```
-azure-ai-text-analysis/
+AZURE-Analyze-Text-with-Azure-AI-Language-PII-Redaction-/
 ├── reviews/                 # Sample hotel reviews (English and French)
 │   ├── review1.txt
 │   ├── ...
 │   └── review5.txt
-├── images/                  # Diagrams and screenshots for this README
+├── images/                  # Architecture diagrams and screenshots
 ├── text-analysis.py         # Main app: one review at a time
 ├── text_analysis_batch.py   # Batch version: saves JSON + redacted files
 ├── requirements.txt         # Python dependencies
@@ -71,8 +71,8 @@ azure-ai-text-analysis/
 ### 1. Clone the repository
 
 ```powershell
-git clone https://github.com/<your-username>/azure-ai-text-analysis.git
-cd azure-ai-text-analysis
+git clone https://github.com/ms-murthy/AZURE-Analyze-Text-with-Azure-AI-Language-PII-Redaction-.git
+cd AZURE-Analyze-Text-with-Azure-AI-Language-PII-Redaction-
 ```
 
 ### 2. Create a virtual environment and install dependencies
@@ -125,40 +125,66 @@ This writes:
 
 > 🔐 `output/` is git-ignored because `results.json` contains the original PII values.
 
-## 📊 Sample Output
+## 📊 Results
+
+Output from a real run of `text-analysis.py` on the sample hotel reviews.
+
+### 1. Language detection
+
+Each review's language is identified before further processing (English for the reviews shown here; review 5 is in French).
+
+![Language detection output](images/output-language.png)
+
+### 2. Named entity recognition
+
+Entities found in `review1.txt`, with their categories:
 
 ```
--------------
-review1.txt
-
-Good Hotel and staff
-The Royal Hotel, London, UK
-...
-Contact me at alex@contoso.com for more details.
-
-Language: English
-
 Entities
-        Royal Hotel (Location)
-        London (Location)
+        Hotel (Location)
+        staff (PersonType)
+        Royal Hotel, London, UK (Address)
+        3/2/2018 (DateTime)
         Buckingham Palace (Location)
         Westminster Abbey (Location)
         ...
-
-PII Entities
-        alex@contoso.com (Email)
-Redacted Text:
- ... Contact me at **************** for more details.
 ```
 
-*Illustrative, abbreviated output. The exact entities, categories and PII found depend on the current service model. Replace this with your own run.*
-
-
-Add your own screenshots to the images/ folder and uncomment these lines:
-![Language detection output](images/output-language.png)
 ![Entity extraction output](images/output-entities.png)
+
+### 3. PII detection and redaction
+
+PII found in `review2.txt`. The person's name, address and dates are masked in the redacted text:
+
+```
+PII Entities
+        Royal Hotel (Organization)
+        London, United Kingdom (Address)
+        5/6/2018 (DateTime)
+        now (DateTime)
+        colleague (PersonType)
+        John Smith (Person)
+Redacted Text:
+ Tired hotel with poor service
+ The ***********, **********************
+ ...My ********* ********** says it's the worst hotel he's ever stayed in...
+```
+
 ![PII redaction output](images/output-pii.png)
 
+## 🧪 Lab Walkthrough
+
+**Microsoft Foundry project** with Azure AI Language (identifiers masked):
+
+![Microsoft Foundry project](images/foundry-project.png)
+
+**Cloning the starter repository** in VS Code (`Git: Clone`):
+
+![Clone Git repository in VS Code](images/git-clone-repository.png)
+
+**Lab files** in `Labfiles/01-analyze-text/Python/text-analysis`:
+
+![Lab files in VS Code Explorer](images/labfiles.png)
 
 ## 💡 Key Learnings
 
