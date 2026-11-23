@@ -1,0 +1,19 @@
+# Secrets / local config
+.env
+
+# Python virtual environments
+.venv/
+venv/
+labenv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Analysis results (results.json contains unredacted PII)
+output/
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
